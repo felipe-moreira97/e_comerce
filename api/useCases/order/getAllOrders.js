@@ -1,4 +1,6 @@
 const { pool } = require("../../mysql")
+const processResponse = require('./processResponse')
+
 
 function getAllOrders(req,res,next) {
     pool.getConnection((err,conn) => {
@@ -13,7 +15,7 @@ function getAllOrders(req,res,next) {
         (err,result) => {
             conn.release()
             err && res.status(500).send(err)            
-            const orderList = JSON.parse(JSON.stringify(result))          
+            const orderList = processResponse(JSON.parse(JSON.stringify(result)))   
             res.send(orderList)
             })
         })

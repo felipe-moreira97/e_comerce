@@ -4,7 +4,6 @@ function createCategory(req,res,next) {
     pool.getConnection((err,conn) => {
         err && res.status(500).send(err)
         const {category} = req.body
-        console.log(category)
         conn.query(`INSERT INTO e_comerce.category (category)
          values (?)`,
         [category],

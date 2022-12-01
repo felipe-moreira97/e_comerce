@@ -4,7 +4,10 @@ const deleteCategory = require('../useCases/category/deleteCategory')
 const getAllCategory = require('../useCases/category/getAllcategory')
 const getProductsByCategory = require('../useCases/category/getProductsByCategory')
 const updateCategory = require('../useCases/category/updateCategory')
+const createOrder = require('../useCases/order/createOrder')
+const deleteOrder = require('../useCases/order/deleteOrder')
 const getAllOrders = require('../useCases/order/getAllOrders')
+const updateOrder = require('../useCases/order/updateOrder')
 const createProduct = require('../useCases/product/createProduct')
 const deleteProduct = require('../useCases/product/deleteProduct')
 const getAllProducts = require('../useCases/product/getAllProducts')
@@ -46,18 +49,12 @@ router.delete('/category/:id',deleteCategory)
 router.get('/orders',getAllOrders)
 
 // create a order
-router.post('/orders',(req,res) => {
-    res.send('OK')
-})
+router.post('/orders',createOrder,getAllOrders)
 
 // update a order
-router.patch('/orders:id',(req,res) => {
-    res.send('OK')
-})
+router.patch('/orders/:id',updateOrder,getAllOrders)
 
 // delete a order
-router.delete('/orders:id',(req,res) => {
-    res.send('OK')
-})
+router.delete('/orders/:id',deleteOrder,getAllOrders)
 
 module.exports = router
