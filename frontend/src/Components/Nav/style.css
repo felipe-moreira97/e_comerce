@@ -1,0 +1,8 @@
+.nav {
+    height: 4rem;
+    background-color: #222222;
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-around;
+}
