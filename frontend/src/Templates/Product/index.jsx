@@ -12,6 +12,8 @@ function Product() {
     const [quantity,setQuantity] = useState(1)
     const {id} = useParams()
     const navigate = useNavigate()
+    const {dispatch} = useContext(globalContext)
+
     const buy = () => {
         addToCart(dispatch,product.id_product,quantity)
         navigate('/cart')
@@ -20,7 +22,6 @@ function Product() {
         addToCart(dispatch,product.id_product,quantity)
         navigate('/')
     }
-    const {dispatch} = useContext(globalContext)
     useEffect(() => {
         const fetchData = async () => {
             const resp = await fetch('http://localhost:3001/products/' + id)
@@ -34,7 +35,7 @@ function Product() {
             <Nav />
             {product && <div className="product">
                 <div>
-                    <div className="img" style={{backgroundImage:'url(https://picsum.photos/160)'}} /> {/* corrigir a img */}
+                    <div className="img" style={{backgroundImage:`url(http://localhost:3001/${product.imagePath})`}} />
                     <h4>Descrição do produto:</h4>
                     <p>{product.description}</p>
                 </div>

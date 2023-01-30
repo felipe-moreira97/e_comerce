@@ -1,0 +1,32 @@
+.products-modal {
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    position:absolute;
+    background: rgba( 255, 255, 255, 0.35 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    -webkit-backdrop-filter: blur( 13.5px );
+}
+.modal-container {
+    background-color: #979797;
+    border: 1px solid #222;
+    border-radius: 15px;
+    max-width: 65rem;
+    margin:5rem auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    gap:1.5rem;
+}
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}

@@ -49,3 +49,12 @@ CREATE TABLE IF NOT EXISTS e_comerce.order_has_product (
     REFERENCES e_comerce.product (id_product),
     FOREIGN KEY (id_order)
     REFERENCES e_comerce.order (id_order))
+
+CREATE TABLE IF NOT EXISTS e_comerce.admin (
+  id_admin INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL,
+  email VARCHAR(45) NOT NULL,
+  hash VARCHAR(60) NOT NULL,
+  PRIMARY KEY (id_admin),
+  UNIQUE KEY (id_admin),
+  UNIQUE KEY (email))

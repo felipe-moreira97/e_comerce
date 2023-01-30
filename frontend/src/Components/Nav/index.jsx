@@ -27,11 +27,14 @@ function Nav() {
             <Button text='Início' handleClick={e => handleClick('http://localhost:3001/products')} />
             {categories.reduce((acc,obj) => (
                 <>{acc}
-                <Button text={obj.category} 
+                <Button text={obj.category}
                     handleClick={e => handleClick(`http://localhost:3001/category/${obj.id_category}`)} />
                 </>
             ),<></>)}
             <Button text='Carrinho' handleClick={e => navigate('/cart')} />
+            <Button text='LogIn' handleClick={e => navigate('/login')} />
+            <Button text='SignIn' handleClick={e => navigate('/signin')} />
+            <Button text='Meus pedidos' handleClick={e => navigate('/orders')} />
         </nav>
     )
 }

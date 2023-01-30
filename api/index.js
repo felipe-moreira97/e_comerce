@@ -6,7 +6,9 @@ const port = 3001
 const router = require('./routes/routes')
 
 app.use(express.json())
-app.use(morgan('dev'),cors())
+app.use(morgan('dev'))
+app.use(cors({origin:true,credentials: true}))
 app.use(router)
+app.use(express.static('./public'))
 
 app.listen(port,() => console.log(`API online on port ${port} at http://localhost:${port}`))

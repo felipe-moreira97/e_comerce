@@ -3,7 +3,7 @@ const { pool } = require("../../mysql")
 function createOrder(req,res,next) {
     pool.getConnection((err,conn) => {
         err && res.status(500).send(err)
-        const { id_client, products } = req.body
+        const { products,id_client } = req.body
         conn.query(`INSERT INTO e_comerce.order (id_client) VALUES (?);`,
             [id_client],
         err => err && res.status(500).send(err))

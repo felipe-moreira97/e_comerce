@@ -8,7 +8,7 @@ function Card({product}) {
     }
     return (
         <div className="card" onClick={e => handleClick(product.id_product)}>
-            <div style={{backgroundImage:'url(https://picsum.photos/160)'}}/>
+            <div style={{backgroundImage:`url(http://localhost:3001/${product.imagePath})`}}/>
             <h3>{product.name}</h3>
             <span/>
             <p>{new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(product.price)}</p>

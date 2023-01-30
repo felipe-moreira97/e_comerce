@@ -1,12 +1,14 @@
 const { pool } = require("../../mysql")
 
 function createProduct(req,res,next) {
+    const imagePath = req.file?.filename;
+    console.log(req.file);
     pool.getConnection((err,conn) => {
         err && res.status(500).send(err)
-        const {name,price,description,image,quantity,id_category} = req.body
+        const {name,price,description,quantity,id_category} = req.body
         conn.query(`INSERT INTO e_comerce.product (name, price, description, imagePath, quantity, id_category)
          values (?,?,?,?,?,?)`,
-        [name,price,description,image,quantity,id_category],
+        [name,price,description,imagePath,quantity,id_category],
         err => {
             err && res.status(500).send(err)
         })

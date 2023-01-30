@@ -1,4 +1,7 @@
 const express = require('express')
+const signin = require('../useCases/signin')
+const auth = require('../useCases/auth')
+const authAdmin = require('../useCases/auth')
 const createCategory = require('../useCases/category/createCategory')
 const deleteCategory = require('../useCases/category/deleteCategory')
 const getAllCategory = require('../useCases/category/getAllcategory')
@@ -13,6 +16,9 @@ const deleteProduct = require('../useCases/product/deleteProduct')
 const getAllProducts = require('../useCases/product/getAllProducts')
 const getOneProduct = require('../useCases/product/getOneProduct')
 const updateProduct = require('../useCases/product/updateProduct')
+const login = require('../useCases/login')
+const upload = require('../useCases/product/multer')
+const signinAdmin = require('../useCases/signin/siginAdmin')
 const router = express.Router()
 
 // get all products
@@ -21,14 +27,14 @@ router.get('/products',getAllProducts)
 // get a especific product
 router.get('/products/:id',getOneProduct)
 
-//create a product 
-router.post('/products',createProduct)
+//create a product
+router.post('/products',authAdmin,upload.single('product'),createProduct)
 
 // update a product
-router.patch('/products/:id',updateProduct)
+router.patch('/products/:id',authAdmin,updateProduct)
 
 // delete a product
-router.delete('/products/:id',deleteProduct)
+router.delete('/products/:id',authAdmin,deleteProduct)
 
 // get all category
 router.get('/category',getAllCategory)
@@ -37,24 +43,49 @@ router.get('/category',getAllCategory)
 router.get('/category/:id',getProductsByCategory)
 
 // create a category
-router.post('/category',createCategory)
+router.post('/category',authAdmin,createCategory)
 
 // update a category
-router.patch('/category/:id',updateCategory)
+router.patch('/category/:id',authAdmin,updateCategory)
 
 // delete a category
-router.delete('/category/:id',deleteCategory)
+router.delete('/category/:id',authAdmin,deleteCategory)
 
 // get all orders
-router.get('/orders',getAllOrders)
+router.get('/orders',auth,getAllOrders)
 
 // create a order
-router.post('/orders',createOrder,getAllOrders)
+router.post('/orders',auth,createOrder,getAllOrders)
 
 // update a order
-router.patch('/orders/:id',updateOrder,getAllOrders)
+router.patch('/orders/:id',auth,updateOrder,getAllOrders)
 
 // delete a order
-router.delete('/orders/:id',deleteOrder,getAllOrders)
+router.delete('/orders/:id',auth,deleteOrder,getAllOrders)
+
+// get all clients
+router.get('/client',(req,res,next) => {
+  res.send('OK')
+})
+
+// create a client
+router.post('/client',signin)
+
+// update a client
+router.patch('/client',(req,res,next) => {
+  res.send('OK')
+})
+
+// delete a client
+router.delete('/client',(req,res,next) => {
+  res.send('OK')
+})
+
+// create a admin
+router.post('/admin',auth,signinAdmin)
+
+
+//login
+router.post('/login',login)
 
 module.exports = router
