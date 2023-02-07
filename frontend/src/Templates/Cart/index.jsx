@@ -16,11 +16,11 @@ function Cart() {
     const handleCreateOrder = async () => {
         const resp = await createOrder(products)
         const json = await resp.json()
-        if (resp.status === 401) {
+        if (resp.status === 401 || resp.status === 201) {
             setMsg(json.mensagem)
             setIsOpened(true)
         }
-        }
+    }
         useEffect(() => {
         const fetchData = async () => {
             const resp = await fetch(`http://localhost:3001/products`)
@@ -72,8 +72,8 @@ function Cart() {
                     <h4>total: <span>{new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(products.reduce((acc,prod) => acc + (prod.price *prod.quantity),0))}</span></h4>
                 </div>
                 <Button text={'Finalizar pedido'} handleClick={e => handleCreateOrder()}/>
-                <Button text={'Continuar comprando'} handleClick={e => navigate('/')} classType='secondary' />
-            </div> : 
+                <Button text={'Continuar comprando'} handleClick={e => navigate('/')} secondary />
+            </div> :
             <div className='cart'>
                 <h3>Não há pedidos no carrinho</h3>
                 <Button text={'Continuar comprando'} handleClick={e => navigate('/')} />

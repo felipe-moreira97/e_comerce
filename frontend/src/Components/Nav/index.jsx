@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { setHomeUrl } from '../../Context/globalContext/actions'
 import globalContext from '../../Context/globalContext/globalContext'
 import Button from '../Button'
+import HamburgerMenu from '../HamburgerMenu'
+import CategoriesTooltip from '../CategoriesTooltip'
 import './style.css'
 
 function Nav() {
@@ -24,17 +26,11 @@ function Nav() {
     }
     return (
         <nav className='nav'>
-            <Button text='Início' handleClick={e => handleClick('http://localhost:3001/products')} />
-            {categories.reduce((acc,obj) => (
-                <>{acc}
-                <Button text={obj.category}
-                    handleClick={e => handleClick(`http://localhost:3001/category/${obj.id_category}`)} />
-                </>
-            ),<></>)}
-            <Button text='Carrinho' handleClick={e => navigate('/cart')} />
-            <Button text='LogIn' handleClick={e => navigate('/login')} />
-            <Button text='SignIn' handleClick={e => navigate('/signin')} />
-            <Button text='Meus pedidos' handleClick={e => navigate('/orders')} />
+            <div>
+                <Button text='🏠' handleClick={e => handleClick('http://localhost:3001/products')} link />
+                <CategoriesTooltip categories={categories} />
+            </div>
+            <HamburgerMenu />
         </nav>
     )
 }

@@ -20,8 +20,8 @@ function Home() {
         <>
             <Nav />
             <div className="container">
-            {products.length === 0 ? 
-            'não há nenhum produto disponível':
+            {products.length === 0 ?
+            'Não há nenhum produto disponível':
             products.reduce((acc,product) => <>{acc}<Card product={product} /></>,<></>)}
             </div>
         </>

@@ -3,12 +3,11 @@ const baseUrl = 'http://localhost:3001'
 export function request(url,method = 'GET',body = null) {
     const token = getToken()
     const authorization = token ? `Bearer ${token}` : null
-    const headers = {
-        "Content-type": "application/json; charset=UTF-8",
-        "Accept": "*",
-        "mode":"no-cors",
-        "Authorization": authorization,
-    }
+    const headers =  new Headers()
+    headers.append('Content-type','application/json; charset=UTF-8')
+    headers.append('Accept','*')
+    headers.append('mode','no-cors')
+    authorization && headers.append('Authorization',authorization)
     const b = body ? JSON.stringify(body) : null
     const req = new Request(url,{
         headers,
@@ -28,16 +27,6 @@ export function login(email,password) {
     }
     return new Promise((resolve,reject) => {
         request(`${baseUrl}/login`,'POST',body)
-            .then(resp => resolve(resp))
-            .catch(err => reject(err))
-    })
-}
-export function createOrUpdateProduct(body,id = null) {
-    const url = id ?  `${baseUrl}/products/${id}` : `${baseUrl}/products`
-    const method = id ? 'PATCH' : 'POST'
-
-    return new Promise((resolve,reject) => {
-        request(url,method,body)
             .then(resp => resolve(resp))
             .catch(err => reject(err))
     })
@@ -94,4 +83,33 @@ export function setOrderStatus(id_order,currentStatus) {
             .then(resp => resolve(resp))
             .catch(err => reject(err))
     })
+}
+
+export async function createOrUpdateProduct(form,id = null) {
+    const body = new FormData(form)
+    const url = id ? `${baseUrl}/products/${id}` : `${baseUrl}/products`
+    const method = id ? 'PATCH' : 'POST'
+    const token = getToken()
+    const authorization = token ? `Bearer ${token}` : null
+    const headers =  new Headers()
+    headers.append('Accept','*')
+    headers.append('mode','no-cors')
+    authorization && headers.append('Authorization',authorization)
+
+    const resp = await fetch(url,{body,method,headers})
+    const json =  await resp.json()
+    return json
+}
+
+export async function deleteProduct(id) {
+    const url = `${baseUrl}/products/${id}`
+    const resp = await request(url,'DELETE')
+        return resp
+}
+
+export async function createCategory(category) {
+    const url = `${baseUrl}/category`
+    const resp = await request(url,'POST',{ category })
+    const json = await resp.json()
+    return json
 }

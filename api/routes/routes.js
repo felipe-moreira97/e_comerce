@@ -28,10 +28,10 @@ router.get('/products',getAllProducts)
 router.get('/products/:id',getOneProduct)
 
 //create a product
-router.post('/products',authAdmin,upload.single('product'),createProduct)
+router.post('/products',authAdmin,upload.single('image'),createProduct)
 
 // update a product
-router.patch('/products/:id',authAdmin,updateProduct)
+router.patch('/products/:id',authAdmin,upload.single('image'),updateProduct)
 
 // delete a product
 router.delete('/products/:id',authAdmin,deleteProduct)
@@ -55,10 +55,10 @@ router.delete('/category/:id',authAdmin,deleteCategory)
 router.get('/orders',auth,getAllOrders)
 
 // create a order
-router.post('/orders',auth,createOrder,getAllOrders)
+router.post('/orders',auth,createOrder)
 
 // update a order
-router.patch('/orders/:id',auth,updateOrder,getAllOrders)
+router.patch('/orders/:id',authAdmin,updateOrder,getAllOrders)
 
 // delete a order
 router.delete('/orders/:id',auth,deleteOrder,getAllOrders)

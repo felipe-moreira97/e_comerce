@@ -1,13 +1,12 @@
-import './style.css'
+import * as S from './style'
 
-function Button({text,classType,handleClick}) {
+function Button(props) {
     return (
-        <button 
-            type='button' 
-            className={`btn ${classType ? classType : ''}`}
-            onClick={e => handleClick(e)} >
-            {text}
-        </button>
+        <S.Button
+           {...props}
+            onClick={e => props.handleClick(e)} >
+            {props.text}
+        </S.Button>
     )
 }
 export default Button

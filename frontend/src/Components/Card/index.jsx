@@ -4,7 +4,7 @@ import './style.css'
 function Card({product}) {
     const navigate = useNavigate()
     const handleClick = id => {
-        navigate(`/product/${id}`)
+            navigate(`/product/${id}`)
     }
     return (
         <div className="card" onClick={e => handleClick(product.id_product)}>

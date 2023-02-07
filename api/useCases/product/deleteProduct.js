@@ -6,12 +6,8 @@ function deleteProduct(req,res,next) {
         [req?.params.id],
         err => {
             err && res.status(500).send(err)
-        })
-        conn.query('SELECT * FROM e_comerce.product',
-        (err,result) => {
             conn.release()
-            err && res.status(500).send(err)
-            res.status(201).send(result)
+            res.status(201).send({mensagem:'produto apagado com sucesso'})
         })
     })
 }

@@ -2,11 +2,14 @@
     max-width: 65rem;
     margin:5rem auto;
     display: flex;
+    align-items: center;
     justify-content: space-around;
     flex-wrap: nowrap;
 }
 .img {
-    height: 160px;
+    height: 100%;
+    width: 100%;
+    margin: auto;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -20,5 +23,14 @@
     gap: 2rem;
 }
 .product h2,h3,h4,p {
-    margin: 0;   
+    margin: 0;
+}
+
+@media (max-width: 716px) {
+    .product {
+        flex-direction: column;
+    }
+    .product div {
+        width: 80%;
+    }
 }

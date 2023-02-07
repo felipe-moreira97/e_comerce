@@ -15,12 +15,16 @@ function Product() {
     const {dispatch} = useContext(globalContext)
 
     const buy = () => {
-        addToCart(dispatch,product.id_product,quantity)
-        navigate('/cart')
+        if (product.quantity) {
+            addToCart(dispatch,product.id_product,quantity)
+            navigate('/cart')
+        }
     }
     const addCart = () => {
-        addToCart(dispatch,product.id_product,quantity)
-        navigate('/')
+        if (product.quantity) {
+            addToCart(dispatch,product.id_product,quantity)
+            navigate('/')
+        }
     }
     useEffect(() => {
         const fetchData = async () => {
@@ -35,7 +39,8 @@ function Product() {
             <Nav />
             {product && <div className="product">
                 <div>
-                    <div className="img" style={{backgroundImage:`url(http://localhost:3001/${product.imagePath})`}} />
+                    <img className="img" src={`http://localhost:3001/${product.imagePath}`} alt="" srcSet="" />
+                    {/* <div className="img" style={{backgroundImage:`url(http://localhost:3001/${product.imagePath})`}} /> */}
                     <h4>Descrição do produto:</h4>
                     <p>{product.description}</p>
                 </div>
@@ -43,8 +48,9 @@ function Product() {
                     <h2>{product.name}</h2>
                     <h3>{new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(product.price)}</h3>
                     <input type="number" name="quantity" id="quantity" onChange={e => setQuantity(parseFloat(e.target.value))} value={quantity} />
-                    <Button text={'Comprar'} handleClick={e => buy()} />
-                    <Button text={'Adicionar ao carrinho'} handleClick={e => addCart()} classType={'secondary'}/>
+                    <Button text={'Comprar'} handleClick={e => buy()} disable={!product.quantity} />
+                    <Button text={'Adicionar ao carrinho'} handleClick={e => addCart()} secondary disable={!product.quantity} />
+                    <Button text={'editar'} handleClick={e => navigate(`/createProduct/${product.id_product}`)} secondary red/>
                 </div>
             </div>}
         </>

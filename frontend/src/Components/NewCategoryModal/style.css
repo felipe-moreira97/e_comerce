@@ -1,0 +1,16 @@
+.container-new-category-modal{
+    display: inline-block;
+    position:absolute;
+    margin:0;
+    }
+
+.new-category-modal {
+    top:-100%;
+    right:0;
+    position:relative;
+    display: inline-block;
+    margin:0;
+    background: #ccc;
+    border: 1px solid black;
+    border-radius: 15px;
+}

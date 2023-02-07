@@ -10,7 +10,7 @@ function Modal({isOpened,setIsOpened,products}) {
                     <h3>produtos do pedido</h3>
                     <Button text='fecha' handleClick={e => setIsOpened(false)} />
                 </div>
-                <table>
+                <table className="modalTable">
                     <thead>
                         <tr>
                             <th>foto</th>
