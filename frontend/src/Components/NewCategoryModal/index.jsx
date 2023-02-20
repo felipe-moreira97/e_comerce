@@ -1,17 +1,18 @@
 import { useState } from "react"
 import Button from "../Button"
 import Modal from './Modal'
-
+import * as S from "./style"
 
 function NewCategoryModal() {
-    const [isOpened,setIsOpened] = useState(false)
+    const [isOpened, setIsOpened] = useState(false)
     return (
-        <div className="container-new-category-modal">
-            <Button text='Nova categoria' handleClick={e => {setIsOpened(true)
+        <S.NewCategoryModal className="container-new-category-modal">
+            <Button text='Nova categoria' handleClick={e => {
+                setIsOpened(true)
                 e.preventDefault()
-            }} secondary small/>
+            }} secondary small />
             <Modal isOpened={isOpened} setIsOpened={setIsOpened} />
-        </div>
+        </S.NewCategoryModal>
     )
 }
 export default NewCategoryModal

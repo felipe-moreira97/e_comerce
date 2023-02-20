@@ -1,11 +1,10 @@
 import { useState } from "react"
 import Button from "../Button"
 import { createCategory } from '../../utils'
-import "./style.css"
-
-function Modal({isOpened,setIsOpened}) {
-    const [category,setCategory] = useState('')
-    const display = isOpened ? "block" : "none"
+import * as S from './style'
+function Modal({ isOpened, setIsOpened }) {
+    const [category, setCategory] = useState('')
+    const display = isOpened
 
     const handleCreateCategory = async () => {
         const resp = await createCategory(category)
@@ -14,11 +13,11 @@ function Modal({isOpened,setIsOpened}) {
         setIsOpened(false)
     }
     return (
-        <div className="new-category-modal" style={{display:display}} >
-            <Button text='X' handleClick={e => setIsOpened(false)} classType='sm secondary red' />
-            <input type="text" name="category" value={category} onChange={ e => setCategory(e.target.value)}/>
-            <Button text='add' handleClick={e => handleCreateCategory()} classType='sm' />
-        </div>
+        <S.Modal display={display} >
+            <Button text='X' handleClick={e => setIsOpened(false)} small secondary red />
+            <input type="text" name="category" value={category} onChange={e => setCategory(e.target.value)} />
+            <Button text='add' handleClick={e => handleCreateCategory()} small />
+        </S.Modal>
     )
 }
 export default Modal
