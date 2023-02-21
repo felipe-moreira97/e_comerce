@@ -1,8 +1,8 @@
-import './App.css';
 import Provider from './Context/globalContext/Provider';
 import Rotas from './Routes/Routes';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
+import { GlobalStyle } from './styles/GlobalStyle';
 
 function App() {
     return (
@@ -10,6 +10,7 @@ function App() {
             <Provider>
                 <ThemeProvider theme={theme}>
                     <Rotas />
+                    <GlobalStyle />
                 </ThemeProvider>
             </Provider>
         </div>
