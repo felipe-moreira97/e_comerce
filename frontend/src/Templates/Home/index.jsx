@@ -1,7 +1,7 @@
 import { useContext, useEffect,useState } from "react"
 import Nav from "../../Components/Nav"
 import Card from "../../Components/Card"
-import './style.css'
+import * as S from './style'
 import globalContext from "../../Context/globalContext/globalContext"
 
 function Home() {
@@ -19,11 +19,11 @@ function Home() {
     return (
         <>
             <Nav />
-            <div className="container">
+            <S.Home>
             {products.length === 0 ?
-            'Não há nenhum produto disponível':
+            <S.Span>Não há nenhum produto disponível</S.Span> :
             products.reduce((acc,product) => <>{acc}<Card product={product} /></>,<></>)}
-            </div>
+            </S.Home>
         </>
 
     )

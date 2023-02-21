@@ -7,7 +7,7 @@ function createOrder(req,res,next) {
 
         conn.query(`SELECT * FROM e_comerce.product`,
         (err,result) => {
-            const product = products.find(product => product.id_product == result.find(prod => product.quantity > prod.quantity).id_product)
+            const product = products.find(product => product.id_product == result.find(prod => product.quantity > prod.quantity)?.id_product)
             console.log(product)
             if (product) {
                 res.status(401).send({

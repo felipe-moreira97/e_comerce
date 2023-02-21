@@ -11,7 +11,6 @@ export default function HamburgerMenu() {
                 <Button text='LogIn' handleClick={e => navigate('/login')} />
                 <Button text='SignIn' handleClick={e => navigate('/signin')} />
                 <Button text='Meus pedidos' handleClick={e => navigate('/orders')} />
-                <Button text='Incluir produto' handleClick={e => navigate('/createProduct')} />
             </div>
         </S.Span>
    )

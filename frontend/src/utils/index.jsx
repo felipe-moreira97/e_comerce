@@ -113,3 +113,7 @@ export async function createCategory(category) {
     const json = await resp.json()
     return json
 }
+
+export function formatNumToCurrency(num) {
+    return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(num)
+}

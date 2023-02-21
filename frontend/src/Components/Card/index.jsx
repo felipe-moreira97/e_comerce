@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import * as S from './style'
+import  { formatNumToCurrency } from '../../utils'
 
 function Card({ product }) {
     const navigate = useNavigate()
@@ -11,7 +12,7 @@ function Card({ product }) {
             <div />
             <h3>{product.name}</h3>
             <span />
-            <p>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}</p>
+            <p>{formatNumToCurrency(product.price)}</p>
         </S.card>
     )
 }

@@ -1,11 +1,11 @@
-CREATE SCHEMA IF NOT EXISTS e_comerce
+CREATE SCHEMA IF NOT EXISTS e_comerce;
 
 CREATE TABLE IF NOT EXISTS e_comerce.category (
   id_category INT NOT NULL AUTO_INCREMENT,
   category VARCHAR(45) NOT NULL,
   PRIMARY KEY (id_category),
   UNIQUE KEY (category)
-  )
+  );
 
 CREATE TABLE IF NOT EXISTS e_comerce.product (
   id_product INT NOT NULL AUTO_INCREMENT,
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS e_comerce.product (
   UNIQUE KEY (id_product),
   UNIQUE KEY (name),
     FOREIGN KEY (id_category)
-    REFERENCES e_comerce.category (id_category))
+    REFERENCES e_comerce.category (id_category));
 
 CREATE TABLE IF NOT EXISTS e_comerce.client (
   id_client INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS e_comerce.client (
   hash VARCHAR(60) NOT NULL,
   PRIMARY KEY (id_client),
   UNIQUE KEY (id_client),
-  UNIQUE KEY (email))
+  UNIQUE KEY (email));
 
   CREATE TABLE IF NOT EXISTS e_comerce.order (
   id_order INT NOT NULL AUTO_INCREMENT,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS e_comerce.client (
   PRIMARY KEY (id_order),
     FOREIGN KEY (id_client)
     REFERENCES e_comerce.client (id_client),
-  UNIQUE KEY (id_order))
+  UNIQUE KEY (id_order));
 
 CREATE TABLE IF NOT EXISTS e_comerce.order_has_product (
   id_product INT NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS e_comerce.order_has_product (
     FOREIGN KEY (id_product)
     REFERENCES e_comerce.product (id_product),
     FOREIGN KEY (id_order)
-    REFERENCES e_comerce.order (id_order))
+    REFERENCES e_comerce.order (id_order));
 
 CREATE TABLE IF NOT EXISTS e_comerce.admin (
   id_admin INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -57,4 +57,4 @@ CREATE TABLE IF NOT EXISTS e_comerce.admin (
   hash VARCHAR(60) NOT NULL,
   PRIMARY KEY (id_admin),
   UNIQUE KEY (id_admin),
-  UNIQUE KEY (email))
+  UNIQUE KEY (email));

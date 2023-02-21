@@ -11,7 +11,7 @@ export const Span = styled.span`
     transition: all 4s;
     box-sizing: border-box;
     top:0;
-
+    z-index:100;
     div {
         display: none;
         flex-direction: column;

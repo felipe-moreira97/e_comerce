@@ -1,7 +1,6 @@
 const express = require('express')
 const signin = require('../useCases/signin')
-const auth = require('../useCases/auth')
-const authAdmin = require('../useCases/auth')
+const {auth,authAdmin} = require('../useCases/auth')
 const createCategory = require('../useCases/category/createCategory')
 const deleteCategory = require('../useCases/category/deleteCategory')
 const getAllCategory = require('../useCases/category/getAllcategory')
@@ -28,10 +27,10 @@ router.get('/products',getAllProducts)
 router.get('/products/:id',getOneProduct)
 
 //create a product
-router.post('/products',authAdmin,upload.single('image'),createProduct)
+router.post('/products',authAdmin, upload.single('image'), createProduct)
 
 // update a product
-router.patch('/products/:id',authAdmin,upload.single('image'),updateProduct)
+router.patch('/products/:id',authAdmin, upload.single('image'), updateProduct)
 
 // delete a product
 router.delete('/products/:id',authAdmin,deleteProduct)

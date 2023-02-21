@@ -17,10 +17,15 @@ export const Mensagem = styled.div`
     background-color: #979797;
     border: 1px solid #222;
     border-radius: 15px;
-    padding: 2rem;
+    padding: 3rem 2rem 2rem 2rem;
     transform: translate(-50%,-50%);
     }
     h2 {
     margin:0;
+    }
+    button {
+        position:absolute;
+        top:5px;
+        right:0px;
     }
 `;

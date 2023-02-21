@@ -14,12 +14,11 @@ function Rotas() {
                 <Route element={<Home />} path='/' exact />
                 <Route element={<Product />} path='/product/:id' />
                 <Route element={<Cart />} path='/cart' />
-                <Route element={<CreateProduct />} path='/createProduct' />
-                <Route element={<CreateProduct />} path='/createProduct/:id' />
                 <Route element={<Login />} path='/login' />
                 <Route element={<Signin />} path='/signin' />
                 <Route element={<Orders />} path='/orders' />
-                <Route element={<Orders />} path='/orders' />
+                <Route element={<CreateProduct />} path='/createProduct' />
+                <Route element={<CreateProduct />} path='/createProduct/:id' />
             </Routes>
         </BrowserRouter>
     )

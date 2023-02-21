@@ -6,14 +6,16 @@ import { GlobalStyle } from './styles/GlobalStyle';
 
 function App() {
     return (
+        <>
+            <GlobalStyle />
         <div className="App">
             <Provider>
                 <ThemeProvider theme={theme}>
                     <Rotas />
-                    <GlobalStyle />
                 </ThemeProvider>
             </Provider>
         </div>
+        </>
     );
 }
 

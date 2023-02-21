@@ -1,16 +1,17 @@
-import Button from "../Button"
-import "./style.css"
+import { formatNumToCurrency } from "../../utils"
+import { theme } from '../../styles/theme'
+import * as S from './style'
 
 function Modal({isOpened,setIsOpened,products}) {
-    const display = isOpened ? "block" : "none"
+
     return (
-        <div className="products-modal" style={{display:display}} >
-            <div className="modal-container">
-                <div className="modal-header">
+        <S.Modal display={isOpened} >
+            <section>
+                < header>
                     <h3>produtos do pedido</h3>
-                    <Button text='fecha' handleClick={e => setIsOpened(false)} />
-                </div>
-                <table className="modalTable">
+                    <span onClick={e => setIsOpened(false)} >❌</span>
+                </ header>
+                <table>
                     <thead>
                         <tr>
                             <th>foto</th>
@@ -24,18 +25,18 @@ function Modal({isOpened,setIsOpened,products}) {
                     <tbody>
                         {products.reduce((acc,prod) => (
                             <>{acc}<tr key={prod.id_product} >
-                                <td className="img" style={{backgroundImage:`url(http://localhost:3001/${prod.imagePath})`}}></td>
+                                <td><img src={`http://localhost:3001/${prod.imagePath ? prod.imagePath : theme.defaultImage }`} alt='' /></td>
                                 <td>{prod.product}</td>
                                 <td>{prod.category}</td>
                                 <td>{prod.quantity}</td>
-                                <td>{new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format((prod.price))}</td>
-                                <td>{new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format((prod.price * prod.quantity))}</td>
+                                <td>{formatNumToCurrency(prod.price)}</td>
+                                <td>{formatNumToCurrency(prod.price * prod.quantity)}</td>
                                 </tr></>
                         ),<></>)}
                     </tbody>
                 </table>
-            </div>
-        </div>
+            </section>
+        </S.Modal>
     )
 }
 export default Modal

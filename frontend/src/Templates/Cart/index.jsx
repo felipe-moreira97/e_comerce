@@ -1,18 +1,21 @@
-import './style.css'
+import * as S from './style'
 import Button from "../../Components/Button"
 import Nav from "../../Components/Nav"
 import { useNavigate } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import globalContext from '../../Context/globalContext/globalContext'
 import { removeToCart } from '../../Context/globalContext/actions'
-import { createOrder } from '../../utils'
+import { createOrder,formatNumToCurrency } from '../../utils'
 import Mensagem from '../../Components/Mensagem'
+import { theme } from '../../styles/theme'
+
 function Cart() {
     const navigate = useNavigate()
     const {state,dispatch} = useContext(globalContext)
     const [products,setProducts] = useState([])
     const [msg,setMsg] = useState('mensagem vazia')
     const [isOpened,setIsOpened] = useState(false)
+
     const handleCreateOrder = async () => {
         const resp = await createOrder(products)
         const json = await resp.json()
@@ -43,7 +46,7 @@ function Cart() {
         <>
             <Mensagem mensagem={msg} isOpened={isOpened} setIsOpened={setIsOpened}/>
             <Nav />
-            {!!products[0] ? <div className="cart">
+            {!!products[0] ? <S.Cart>
                 <h3>Detalhes do Pedido</h3>
                 <table>
                     <thead>
@@ -57,27 +60,27 @@ function Cart() {
                     </thead>
                     <tbody>
                         {products.reduce((acc,prod) => (
-                            <>{acc}<tr className="details" key={prod.id_product} ><td
-                            className="img" style={{backgroundImage:`url(http://localhost:3001/${prod.imagePath})`}} /><td
+                            <>{acc}<tr key={prod.id_product} ><img
+                            src={`http://localhost:3001/${prod.imagePath}`} alt={`http://localhost:3001/${theme.defaultImage}`} /><td
                             >{prod.name}</td><td
                             >{`quant.: ${prod.quantity}`}</td><td
-                            >{new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format((prod.price))}</td><td
+                            >{formatNumToCurrency((prod.price))}</td><td
                             ><Button text={'Remover'} handleClick={e => removeToCart(dispatch,prod.id_product)} /></td></tr></>
                         ),<></>)}
                     </tbody>
                 </table>
                 <div className='details'>
-                    <p>sub total: <span>{new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(products.reduce((acc,prod) => acc + (prod.price * prod.quantity),0))}</span></p>
-                    <p>frete: <span>R$ 0,00</span></p>
-                    <h4>total: <span>{new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(products.reduce((acc,prod) => acc + (prod.price *prod.quantity),0))}</span></h4>
+                    <p>sub total: <S.Span>{formatNumToCurrency(products.reduce((acc,prod) => acc + (prod.price * prod.quantity),0))}</S.Span></p>
+                    <p>frete: <S.Span>R$ 0,00</S.Span></p>
+                    <strong>total: <S.Span>{formatNumToCurrency(products.reduce((acc,prod) => acc + (prod.price * prod.quantity),0))}</S.Span></strong>
                 </div>
                 <Button text={'Finalizar pedido'} handleClick={e => handleCreateOrder()}/>
                 <Button text={'Continuar comprando'} handleClick={e => navigate('/')} secondary />
-            </div> :
-            <div className='cart'>
-                <h3>Não há pedidos no carrinho</h3>
+            </S.Cart> :
+            <S.Cart>
+                <S.Span>Não há pedidos no carrinho</S.Span>
                 <Button text={'Continuar comprando'} handleClick={e => navigate('/')} />
-                </div>}
+                </S.Cart>}
         </>
     )
 }
