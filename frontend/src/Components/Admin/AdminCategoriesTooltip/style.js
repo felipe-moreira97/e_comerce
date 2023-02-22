@@ -1,0 +1,29 @@
+import styled from "styled-components";
+
+export const Span = styled.span`
+    color:#dadada;
+    font-weight: 800;
+    width: 10rem;
+    position: absolute;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 1.5rem 1rem;
+    transition: all 4s;
+    box-sizing: border-box;
+    top:0;
+    z-index:100;
+    div {
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        position: relative;
+        top:-50%;
+        max-width: 10rem;
+    }
+    &:hover {
+        div {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+`

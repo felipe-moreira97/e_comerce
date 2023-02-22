@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 
 import Button from "../../Components/Button"
 import Mensagem from "../../Components/Mensagem"
-import Nav from "../../Components/Nav"
+import AdminNav from "../../Components/Admin/AdminNav"
 import NewCategoryModal from '../../Components/NewCategoryModal'
 
 import { createOrUpdateProduct , deleteProduct } from "../../utils"
@@ -26,7 +26,7 @@ export default function CreateProduct() {
     const handleSubmit = async e => {
         e.preventDefault()
         const data = await createOrUpdateProduct(form.current,id)
-        data && navigate('/')
+        data && navigate('/admin')
     }
 
     const handleDelete = async e => {
@@ -64,7 +64,7 @@ export default function CreateProduct() {
 
     return (
         <>
-            <Nav />
+            <AdminNav />
             <Mensagem mensagem={msg} isOpened={isOpened} setIsOpened={setIsOpened}/>
             <form ref={form} onSubmit={e => handleSubmit(e)} >
                 <div className="nameImput">

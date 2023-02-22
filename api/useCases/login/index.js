@@ -19,10 +19,11 @@ const login = (req,res,next) => {
                 })
             }
             if (result.length < 1) {
-                let [newIsAdmin,newHash,newId] = await adminQuery(email)
+                let { newIsAdmin, newHash, newId, mensagem } = await adminQuery(email)
                 isAdmin = newIsAdmin
                 hash = newHash
                 id = newId
+                if (mensagem) return res.status(401).send({ mensagem })
             }
             bcrypt.compare(password,hash,(err,check) => {
                 if (err) {
@@ -42,7 +43,8 @@ const login = (req,res,next) => {
                     )
                     res.status(200).send({
                         mensagem:'autenticado com sucesso',
-                        token
+                        token,
+                        isAdmin
                     })
                 } else {
                     return res.status(401).send({
@@ -62,13 +64,13 @@ const adminQuery =  email => {
                 conn.release()
                 if (err) {
                     let mensagem = 'erro de conecção'
-                    reject(mensagem)
+                    resolve({mensagem})
                 }
                 else if (result.length < 1) {
                     let mensagem = 'email incorreto'
-                    reject(mensagem)
+                    resolve({mensagem})
                 } else {
-                    resolve([true,result[0].hash,result[0].id_admin])
+                    resolve({newIsAdmin:true, newHash:result[0].hash, newId:result[0].id_admin})
                 }
             })
         })

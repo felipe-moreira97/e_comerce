@@ -6,7 +6,7 @@ import Button from '../Button'
 import * as S from './style'
 
 
-export default function CategoriesTooltip({categories}) {
+export default function AdminCategoriesTooltip({categories}) {
     const context = useContext(globalContext)
     const navigate = useNavigate()
     const handleClick = url => {

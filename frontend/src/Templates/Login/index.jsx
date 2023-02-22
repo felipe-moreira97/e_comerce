@@ -19,6 +19,9 @@ function Login() {
             const json = await resp.json()
             if (json.token) {
                 setToken(json.token)
+                if (json.isAdmin) {
+                    navigate('/admin')
+                }
                 navigate('/')
             }
             if (resp.status === 401) {

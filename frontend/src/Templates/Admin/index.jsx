@@ -1,10 +1,10 @@
 import { useContext, useEffect,useState } from "react"
-import Nav from "../../Components/Nav"
-import Card from "../../Components/Card"
+import AdminNav from "../../Components/Admin/AdminNav"
+import AdminCard from "../../Components/Admin/AdminCard"
 import * as S from './style'
 import globalContext from "../../Context/globalContext/globalContext"
 
-function Home() {
+export default function Admin() {
     const context = useContext(globalContext)
     const {homeUrl} = context.state
     const [products,setProducts] = useState([])
@@ -17,14 +17,13 @@ function Home() {
         fetchData()
     },[homeUrl])
     return (
-        <>
-            <Nav />
-            <S.Home>
-            {products.length === 0 ?
-            <S.Span>Não há nenhum produto disponível</S.Span> :
-            products.reduce((acc,product) => <>{acc}<Card product={product} /></>,<></>)}
-            </S.Home>
-        </>
+            <>
+                <AdminNav />
+                <S.Admin>
+                {products.length === 0 ?
+                <S.Span>Não há nenhum produto disponível</S.Span> :
+                products.reduce((acc,product) => <>{acc}<AdminCard product={product} /></>,<></>)}
+                </S.Admin>
+            </>
     )
 }
-export default Home
