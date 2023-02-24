@@ -2,27 +2,27 @@ import { useState } from "react"
 import Button from "../../Components/Button"
 import Mensagem from "../../Components/Mensagem"
 import { login, setToken } from "../../utils"
-import  { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import * as S from './style'
 
 function Login() {
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
-    const [msg,setMsg] = useState('mensagem vazia')
-    const [isOpened,setIsOpened] = useState(false)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [msg, setMsg] = useState('mensagem vazia')
+    const [isOpened, setIsOpened] = useState(false)
     const navigate = useNavigate()
 
     const handleSubmit = e => {
         e.preventDefault()
         const fetchData = async () => {
-            const resp = await login(email,password)
+            const resp = await login(email, password)
             const json = await resp.json()
+            console.log(json)
             if (json.token) {
                 setToken(json.token)
                 if (json.isAdmin) {
                     navigate('/admin')
-                }
-                navigate('/')
+                } else navigate('/')
             }
             if (resp.status === 401) {
                 setMsg(json.mensagem)
@@ -33,7 +33,7 @@ function Login() {
     }
     return (
         <>
-            <Mensagem mensagem={msg} isOpened={isOpened} setIsOpened={setIsOpened}/>
+            <Mensagem mensagem={msg} isOpened={isOpened} setIsOpened={setIsOpened} />
             <S.Login>
                 <form >
                     <h2>Login</h2>

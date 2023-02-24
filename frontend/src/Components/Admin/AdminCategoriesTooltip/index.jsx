@@ -1,28 +1,28 @@
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { setHomeUrl } from '../../Context/globalContext/actions'
-import globalContext from '../../Context/globalContext/globalContext'
-import Button from '../Button'
+import { setHomeUrl } from '../../../Context/globalContext/actions'
+import globalContext from '../../../Context/globalContext/globalContext'
+import Button from '../../Button'
 import * as S from './style'
 
 
-export default function AdminCategoriesTooltip({categories}) {
+export default function AdminCategoriesTooltip({ categories }) {
     const context = useContext(globalContext)
     const navigate = useNavigate()
     const handleClick = url => {
-        setHomeUrl(context.dispatch,url)
+        setHomeUrl(context.dispatch, url)
         navigate('/admin')
     }
     return (
         <S.Span>Categorias
             <div>
-                {categories.reduce((acc,obj) => (
+                {categories.reduce((acc, obj) => (
                     <>{acc}
-                    <Button text={obj.category}
-                        handleClick={e => handleClick(`http://localhost:3001/category/${obj.id_category}`)}
-                        link />
+                        <Button text={obj.category}
+                            handleClick={e => handleClick(`http://localhost:3001/category/${obj.id_category}`)}
+                            link />
                     </>
-                ),<></>)}
+                ), <></>)}
             </div>
         </S.Span>
     )

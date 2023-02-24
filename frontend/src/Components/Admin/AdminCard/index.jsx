@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import * as S from './style'
-import  { formatNumToCurrency } from '../../../utils'
+import { formatNumToCurrency } from '../../../utils'
 
 export default function AdminCard({ product }) {
     const navigate = useNavigate()
@@ -13,6 +13,8 @@ export default function AdminCard({ product }) {
             <h3>{product.name}</h3>
             <span />
             <p>{formatNumToCurrency(product.price)}</p>
+            <span />
+            <p>Qtd: {product.quantity}</p>
         </S.card>
     )
 }

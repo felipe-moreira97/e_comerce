@@ -5,7 +5,7 @@ import { setHomeUrl } from '../../../Context/globalContext/actions'
 import globalContext from '../../../Context/globalContext/globalContext'
 import Button from '../../Button'
 import AdminHamburgerMenu from '../AdminHanburgerMenu'
-import CategoriesTooltip from '../../CategoriesTooltip'
+import AdminCategoriesTooltip from '../AdminCategoriesTooltip'
 import * as S from './style'
 
 export default function AdminNav() {
@@ -28,7 +28,7 @@ export default function AdminNav() {
         <S.Nav>
             <div>
                 <Button text='🏠' handleClick={e => handleClick('http://localhost:3001/products')} link />
-                <CategoriesTooltip categories={categories} />
+                <AdminCategoriesTooltip categories={categories} />
             </div>
             <AdminHamburgerMenu />
         </S.Nav>

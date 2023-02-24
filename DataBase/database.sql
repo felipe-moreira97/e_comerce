@@ -58,3 +58,6 @@ CREATE TABLE IF NOT EXISTS e_comerce.admin (
   PRIMARY KEY (id_admin),
   UNIQUE KEY (id_admin),
   UNIQUE KEY (email));
+
+INSERT INTO e_comerce.admin (name,email,hash)
+VALUES ('admin','admin@email.com','$2b$10$k5iIf6JNjTidcqgUzt0m5evQupCC.3P2EXChdxeeV50UcNolip/HG');
