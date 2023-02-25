@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Product = styled.div`
     max-width: 90%;
-    margin:5rem auto;
+    margin:5rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -27,6 +27,7 @@ export const Product = styled.div`
     }
     @media (max-width: 716px) {
             flex-direction: column;
+            margin: 3rem;
     }
     div {
         width: 80%;

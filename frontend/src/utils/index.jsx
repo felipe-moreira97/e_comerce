@@ -116,3 +116,11 @@ export async function createCategory(category) {
 export function formatNumToCurrency(num) {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(num)
 }
+
+export async function getAccounts(admin) {
+    const url = `${baseUrl}/${admin ? 'admin' : 'client'}`
+    const resp = await request(url)
+    const json = await resp.json()
+    return json
+
+}

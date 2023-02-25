@@ -52,7 +52,6 @@ function Login() {
                     </div>
                 </form>
             </S.Login>
-
         </>
     )
 }

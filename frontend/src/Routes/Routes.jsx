@@ -1,4 +1,4 @@
-import {BrowserRouter,Route,Routes} from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Cart from '../Templates/Cart'
 import Home from '../Templates/Home'
 import Product from '../Templates/Product'
@@ -8,6 +8,7 @@ import Orders from '../Templates/Orders'
 import CreateProduct from '../Templates/CreateProduct'
 import Admin from '../Templates/Admin'
 import AdminOrders from '../Components/Admin/AdminOrders'
+import AccountManager from '../Templates/AccountManager'
 
 function Rotas() {
     return (
@@ -24,6 +25,8 @@ function Rotas() {
                 <Route element={<CreateProduct />} path='/admin/product' />
                 <Route element={<CreateProduct />} path='/admin/product/:id' />
                 <Route element={<AdminOrders />} path='/admin/orders' />
+                <Route element={<AccountManager />} path='/admin/client' />
+                <Route element={<AccountManager admin />} path='/admin/manager' />
             </Routes>
         </BrowserRouter>
     )

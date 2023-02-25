@@ -7,6 +7,7 @@ import AdminNav from "../../Components/Admin/AdminNav"
 import * as S from './style'
 
 import { createOrUpdateProduct, deleteProduct } from "../../utils"
+import Footer from "../../Components/Footer"
 
 export default function CreateProduct() {
     const image = useRef(null)
@@ -105,6 +106,7 @@ export default function CreateProduct() {
                 <Button text='Cadastrar' handleClick={e => console.log('what')} ><input type='submit' /></Button>
                 {id && <Button text="Apagar produto" handleClick={e => handleDelete(e)} red />}
             </S.CreateProduct>
+            <Footer />
         </>
     )
 }

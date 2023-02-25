@@ -7,6 +7,6 @@ export const Nav = styled.nav`
     flex-direction: row;
     align-items:center;
     justify-content: space-between;
-    box-shadow: 10px 10px 20px #333;
+    box-shadow: 0px 10px 20px #333;
     position:relative;
 `
